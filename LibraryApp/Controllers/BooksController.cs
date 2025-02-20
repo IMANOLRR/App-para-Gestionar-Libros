@@ -14,20 +14,17 @@ namespace LibraryApp.Controllers
             _context = context;
         }
 
-        // Listar libros
         public async Task<IActionResult> Index()
         {
             var books = await _context.Books.ToListAsync();
             return View(books);
         }
 
-        // Crear libro (GET)
         public IActionResult Create()
         {
             return View();
         }
 
-        // Crear libro (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Book book)
@@ -41,7 +38,6 @@ namespace LibraryApp.Controllers
             return View(book);
         }
 
-        // Editar libro (GET)
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -52,7 +48,6 @@ namespace LibraryApp.Controllers
             return View(book);
         }
 
-        // Editar libro (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Book book)
@@ -76,7 +71,6 @@ namespace LibraryApp.Controllers
             return View(book);
         }
 
-        // Eliminar libro (GET)
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Books == null)
@@ -95,7 +89,6 @@ namespace LibraryApp.Controllers
             return View(book);
         }
 
-        // Confirmar eliminación (POST)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
